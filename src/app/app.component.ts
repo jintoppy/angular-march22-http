@@ -23,8 +23,11 @@ export class AppComponent {
   onSearch(searchText: string){
     console.log(searchText);
     this.userService.searchUsers(searchText)
-      .subscribe((searchResult: SearchResponse) => {
-        this.users = searchResult.items;
+      .subscribe((users: User[]) => {
+        console.log(users);
+        this.users = users;
+      }, (err: any) => {
+        console.log(err);
       });
   }
 }
