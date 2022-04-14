@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './models/user';
+import { SearchResponse } from './models/search-response';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class UserService {
   }
 
   searchUsers(searchTerm:string){
-    //https://api.github.com/search/users?q=angular
+    const searchUrl = `https://api.github.com/search/users?q=${searchTerm}`;
+    return this.http.get<SearchResponse>(searchUrl);
   }
 }

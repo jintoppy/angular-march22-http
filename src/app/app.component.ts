@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from './models/user';
+import { SearchResponse } from './models/search-response';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +18,13 @@ export class AppComponent {
       .subscribe((users: User[]) => {
         this.users = users;
       })
+  }
+
+  onSearch(searchText: string){
+    console.log(searchText);
+    this.userService.searchUsers(searchText)
+      .subscribe((searchResult: SearchResponse) => {
+        this.users = searchResult.items;
+      });
   }
 }
