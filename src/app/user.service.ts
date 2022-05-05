@@ -23,7 +23,7 @@ export class UserService {
               .get<SearchResponse>(searchUrl)
               .pipe(
                 map((result: SearchResponse) => result.items),
-                catchError(err => of([]))           
+                catchError(err => of([]))         
               )
   }
 }
