@@ -1,15 +1,24 @@
-name: CI Angular app through Github Actions
-on: push
+name: workflow name
+
+on:
+  push:
+    branches:
+      - 'master'
+
 jobs:
   build:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      ‐ uses: actions/checkout@v3
-      ‐ uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node 12.x
+        uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
-      ‐ name: Setup
+          node-version: '12.x'
+      - name: Install dependencies
         run: npm ci
-      ‐ name: Test
-        run: |
-          npm run test:ci
+      - name: Build
+        run: npm run build:ci
+      - name: Test
+        run: npm run test:ci    
